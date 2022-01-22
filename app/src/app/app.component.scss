@@ -1,7 +1,3 @@
-html,
-body {
-    height: 100%;
-}
 body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
@@ -20,18 +16,11 @@ mat-divider {
 
 .drawer-container {
     width: 100%;
-    height: 100%;
 }
 
 .drawer-sidenav-content {
     display: flex;
-    // height: 100%;
-    // align-items: center;
-    // justify-content: center;
-}
-
-.drawer-sidenav {
-    padding: 20px;
+    height: calc(100vh - 64px);
 }
 
 .mat-dialog-content {
@@ -39,6 +28,7 @@ mat-divider {
 }
 
 .grid-content {
+    //min-width: calc(100vh + 340px);
     mat-card-title {
         font-size: larger;
     }

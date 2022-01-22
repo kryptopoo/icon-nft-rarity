@@ -7,8 +7,8 @@
 </mat-toolbar>
 
 <mat-drawer-container class="drawer-container" autosize>
-  <mat-drawer #drawer class="drawer-sidenav" mode="side" opened>
-    <div class="m-2">
+  <mat-drawer #drawer mode="side" opened>
+    <div class="pl-4 pr-4 pb-4">
       <!-- collection select -->
       <div class="mt-4">
         <mat-form-field fxFlex="100%">
@@ -94,7 +94,6 @@
 
       </div>
     </div>
-
   </mat-drawer>
 
   <div class="drawer-sidenav-content">
@@ -126,7 +125,7 @@
       <div class="mt-8 mb-8">
 
         <!-- loading -->
-        <div *ngIf="loading.nfts" fxLayout="row" fxLayoutAlign="space-around center" class="h-full p-8">
+        <div *ngIf="loading.nfts" fxLayout="row" fxLayoutAlign="space-around center" class="h-full p-16">
           <mat-progress-spinner color="accent" mode="indeterminate" diameter="60"></mat-progress-spinner>
         </div>
 

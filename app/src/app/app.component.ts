@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     totalNfts: number;
     pageSize: number;
     pageIndex: number;
+    pageSizeOptions: number[];
     filters: any[];
     sortBy: string;
 
@@ -53,8 +54,9 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.dialog = _dialog;
 
         this.totalNfts = 0;
-        this.pageSize = 16;
         this.pageIndex = 0;
+        this.pageSize = 16;
+        this.pageSizeOptions = [16, 40, 80, 160];
         this.filters = [];
         this.sortBy = 'rarity';
 

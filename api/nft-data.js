@@ -35,10 +35,15 @@ const createCollection = async (contract, fromId = 1, toId = 1) => {
         while (isLoop) {
             var tokenURI = await callIconMethod('', contract, 'tokenURI', { _id: IconService.IconConverter.toHex(i) });
             console.log(`crawling #${i} tokenURI ${tokenURI}`);
-            if (tokenURI === undefined) {
-                // stop
-                isLoop = toId == 1 ? false : i <= toId;
+
+            // not set toId
+            if (toId == 1) {
+                isLoop = tokenURI != undefined;
             } else {
+                isLoop = (i < toId);
+            }
+
+            if (tokenURI !== undefined) {
                 // try to get from craft network
                 if (!tokenURI.includes('http')) tokenURI = `https://craft-network.mypinata.cloud/ipfs/${tokenURI}`;
 

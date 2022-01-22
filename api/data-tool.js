@@ -41,5 +41,5 @@ if (cmd == 'analyze') {
 // Cubies           cx8e51beac285e664d74d457bb8fbbbb693bf1b97d    18
 
 //// commands
-// node data-tool.js create --contract 
+// node data-tool.js create --contract --fromId --toId
 // node data-tool.js analyze --contract 

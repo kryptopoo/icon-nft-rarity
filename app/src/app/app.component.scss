@@ -27,8 +27,14 @@ mat-divider {
     max-height: 90vh !important;
 }
 
+.collection-image {
+    object-fit: cover; 
+    width: 100%; 
+    height: 160px;
+    min-width: calc(100vw - 354px);
+}
+
 .grid-content {
-    //min-width: calc(100vh + 340px);
     mat-card-title {
         font-size: larger;
     }

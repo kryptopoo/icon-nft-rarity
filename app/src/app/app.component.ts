@@ -50,6 +50,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     filters: any[];
     sortBy: string;
 
+    // default images
+    defaultNftImg: string;
+    defaultCollectionImg: string;
+
     constructor(private http: HttpClient, _dialog: MatDialog) {
         this.dialog = _dialog;
 
@@ -61,6 +65,9 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.sortBy = 'rarity';
 
         this.loading = { nfts: false, traitCount: false, traits: false };
+
+        this.defaultNftImg = 'assets/images/default-nft-img.jpg';
+        this.defaultCollectionImg = 'assets/images/default-collection-img.png';
     }
 
     ngOnInit() {}

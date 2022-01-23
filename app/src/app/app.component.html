@@ -103,7 +103,8 @@
       <!-- collection info -->
       <div class="w-full min-w-full">
         <div class="h-40">
-          <img src="{{selectedCollection.image}}" style="object-fit: cover; width: 100%; height: 100%;" />
+          <img [defaultImage]="defaultCollectionImg" [lazyLoad]="selectedCollection.image"
+            style="object-fit: cover; width: 100%; height: 100%; " />
         </div>
         <div class="text-2xl font-medium text-pink-600 mt-4">{{selectedCollection.name}}</div>
         <mat-divider></mat-divider>
@@ -124,37 +125,40 @@
       <!-- grid of nfts -->
       <div class="mt-8 mb-8">
 
+        <!-- sort paging -->
+        <div fxLayout.xs="column" fxLayoutAlign.xs="space-between none" fxLayout="row"
+          fxLayoutAlign="space-between center" class="mt-2 mb-4">
+          <div>
+            <mat-form-field fxFlex.xs="100%">
+              <mat-label>Sort by</mat-label>
+              <mat-select [(ngModel)]="sortBy" (ngModelChange)="onSortByChanged()">
+                <mat-option value="rarity">Rarity</mat-option>
+                <mat-option value="id">Id</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-paginator fxFlex.xs="100%" [length]="totalNfts" [pageSize]="pageSize" [pageIndex]="pageIndex"
+              [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="onPageChanged($event)">
+            </mat-paginator>
+          </div>
+        </div>
+
+
         <!-- loading -->
         <div *ngIf="loading.nfts" fxLayout="row" fxLayoutAlign="space-around center" class="h-full p-16">
           <mat-progress-spinner color="accent" mode="indeterminate" diameter="60"></mat-progress-spinner>
         </div>
 
         <div *ngIf="!loading.nfts">
-          <!-- sort paging -->
-          <div fxLayout.xs="column" fxLayoutAlign.xs="space-between none" fxLayout="row"
-            fxLayoutAlign="space-between center" class="mt-2 mb-4">
-            <div>
-              <mat-form-field fxFlex.xs="100%">
-                <mat-label>Sort by</mat-label>
-                <mat-select [(ngModel)]="sortBy" (ngModelChange)="onSortByChanged()">
-                  <mat-option value="rarity">Rarity</mat-option>
-                  <mat-option value="id">Id</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-paginator fxFlex.xs="100%" [length]="totalNfts" [pageSize]="pageSize" [pageIndex]="pageIndex"
-                [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="onPageChanged($event)">
-              </mat-paginator>
-            </div>
-          </div>
+
 
           <!-- grid -->
           <div fxLayout="row wrap" fxLayoutGap="8px grid" class="grid-content pb-32 lg:pb-6">
             <div fxFlex="12.5%" fxFlex.xs="100%" fxFlex.sm="25%" *ngFor="let nft of nfts">
               <mat-card (click)="viewNftDetail(nft)">
-                <img *ngIf="selectedCollection.assetType == 'image'" mat-card-image src="{{nft.image}}"
-                  loading="lazy" />
+                <img *ngIf="selectedCollection.assetType == 'image'" mat-card-image [defaultImage]="defaultNftImg"
+                  [lazyLoad]="nft.image" />
                 <video *ngIf="selectedCollection.assetType == 'video'" class="mat-card-image" src="{{nft.image}}"
                   autoplay="autoplay" loop="loop" loading="lazy"></video>
                 <mat-card-content>
